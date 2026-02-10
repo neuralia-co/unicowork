@@ -1,682 +1,1080 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
-    <meta charset="utf-8">
-    <title>Unicowork - Espace de coworking sur Le Mans</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Espace de coworking au coeur du mans. Entourez vous de personnes qui vous tirent vers le haut !">
-    <meta name="keywords" content="architecture,building,business,bootstrap,creative,exterior design,furniture design,gallery,garden design,house,interior design,landscape design,multipurpose,onepage,portfolio,studio">
-    <meta name="author" content="">
+    <title>Unicowork — Coworking au Mans</title>
+    <meta name="description" content="Espace de coworking chaleureux au cœur du Mans. Bureaux dédiés, fibre optique, café inclus. À 200m du tram Gares.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green: #2D4A3E;
+            --green-light: #3A6B56;
+            --cream: #F5F0E8;
+            --cream-dark: #E8E0D0;
+            --wood: #B8956A;
+            --wood-light: #D4B896;
+            --charcoal: #1A1A1A;
+            --text: #2C2C2C;
+            --text-light: #6B6B6B;
+            --white: #FEFCF9;
+        }
 
-    <!-- CSS Files
-    ================================================== -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" id="bootstrap" />
-    <link href="css/plugins.css" rel="stylesheet" type="text/css">
-    <link href="css/style.css" rel="stylesheet" type="text/css">
-    <link href="css/color.css" rel="stylesheet" type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    <!-- custom background -->
-    <link rel="stylesheet" href="css/bg.css" type="text/css">
+        html {
+            scroll-behavior: smooth;
+        }
 
-    <!-- color scheme -->
-	<link rel="stylesheet" href="css/colors/yellow.css" type="text/css" id="colors">
-    
-    <!-- revolution slider -->
-    <link rel="stylesheet" href="rs-plugin/css/settings.css" type="text/css">
-    <link rel="stylesheet" href="css/rev-settings.css" type="text/css">
-	
-	<!-- custom font -->
-	<link rel="stylesheet" href="css/font-style-2.css" type="text/css">
+        body {
+            font-family: 'Outfit', sans-serif;
+            color: var(--text);
+            background: var(--white);
+            overflow-x: hidden;
+            font-weight: 300;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'DM Serif Display', serif;
+            font-weight: 400;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.2rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            background: rgba(254, 252, 249, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 1px 0 rgba(0,0,0,0.06);
+        }
+
+        .nav-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.5rem;
+            color: var(--white);
+            text-decoration: none;
+            transition: color 0.4s;
+        }
+
+        nav.scrolled .nav-logo {
+            color: var(--green);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: rgba(255,255,255,0.85);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 0.03em;
+            transition: color 0.4s;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text-light);
+        }
+
+        nav.scrolled .nav-links a:hover {
+            color: var(--green);
+        }
+
+        .nav-links a:hover {
+            color: white;
+        }
+
+        .nav-cta {
+            padding: 0.6rem 1.6rem;
+            background: var(--white);
+            color: var(--green) !important;
+            border-radius: 100px;
+            font-weight: 500 !important;
+            transition: all 0.4s !important;
+        }
+
+        nav.scrolled .nav-cta {
+            background: var(--green) !important;
+            color: var(--white) !important;
+        }
+
+        /* HAMBURGER */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            width: 24px;
+            height: 2px;
+            background: white;
+            transition: all 0.3s;
+        }
+
+        nav.scrolled .hamburger span {
+            background: var(--charcoal);
+        }
+
+        /* HERO */
+        .hero {
+            position: relative;
+            height: 100vh;
+            min-height: 700px;
+            display: flex;
+            align-items: flex-end;
+            padding: 3rem;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .hero-bg::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                rgba(26, 26, 26, 0.3) 0%,
+                rgba(26, 26, 26, 0.1) 40%,
+                rgba(26, 26, 26, 0.6) 100%
+            );
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 700px;
+            padding-bottom: 2rem;
+        }
+
+        .hero-tag {
+            display: inline-block;
+            padding: 0.4rem 1.2rem;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 100px;
+            color: white;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            color: white;
+            line-height: 1.1;
+            margin-bottom: 1.2rem;
+        }
+
+        .hero h1 em {
+            color: var(--wood-light);
+        }
+
+        .hero p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.15rem;
+            line-height: 1.6;
+            max-width: 500px;
+            margin-bottom: 2rem;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.9rem 2rem;
+            border-radius: 100px;
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--wood-light);
+            color: var(--charcoal);
+        }
+
+        .btn-primary:hover {
+            background: var(--wood);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255,255,255,0.4);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255,255,255,0.1);
+        }
+
+        .btn-green {
+            background: var(--green);
+            color: var(--white);
+        }
+
+        .btn-green:hover {
+            background: var(--green-light);
+            transform: translateY(-2px);
+        }
+
+        /* SECTIONS */
+        section {
+            padding: 7rem 3rem;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--green-light);
+            margin-bottom: 1rem;
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--charcoal);
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+
+        /* ABOUT */
+        .about {
+            background: var(--cream);
+        }
+
+        .about-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+        }
+
+        .stat {
+            padding: 1.5rem;
+            background: var(--white);
+            border-radius: 16px;
+        }
+
+        .stat-number {
+            font-family: 'DM Serif Display', serif;
+            font-size: 2rem;
+            color: var(--green);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 0.3rem;
+        }
+
+        .about-images {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .about-images img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        .about-images img:first-child {
+            grid-column: 1 / -1;
+            height: 300px;
+        }
+
+        /* GALLERY */
+        .gallery {
+            background: var(--white);
+            padding: 5rem 0;
+        }
+
+        .gallery-header {
+            text-align: center;
+            padding: 0 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-scroll {
+            display: flex;
+            gap: 1.5rem;
+            padding: 0 3rem;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .gallery-scroll::-webkit-scrollbar {
+            display: none;
+        }
+
+        .gallery-item {
+            flex: 0 0 auto;
+            width: 45vw;
+            max-width: 600px;
+            min-width: 300px;
+            scroll-snap-align: start;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 20px;
+        }
+
+        .gallery-item p {
+            margin-top: 0.8rem;
+            font-size: 0.9rem;
+            color: var(--text-light);
+            padding-left: 0.3rem;
+        }
+
+        /* FEATURES */
+        .features {
+            background: var(--green);
+            color: white;
+        }
+
+        .features .section-label {
+            color: var(--wood-light);
+        }
+
+        .features .section-title {
+            color: white;
+        }
+
+        .features-header {
+            max-width: 600px;
+            margin-bottom: 4rem;
+        }
+
+        .features-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .feature-card {
+            padding: 2.5rem 2rem;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-4px);
+        }
+
+        .feature-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--wood-light);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.65);
+        }
+
+        /* PRICING */
+        .pricing {
+            background: var(--cream);
+        }
+
+        .pricing-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+
+        .pricing-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-top: 0.5rem;
+        }
+
+        .pricing-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        .pricing-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 2.5rem 2rem;
+            position: relative;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+        }
+
+        .pricing-card.featured {
+            border-color: var(--green);
+        }
+
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--green);
+            color: white;
+            padding: 0.3rem 1.2rem;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .pricing-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card .price {
+            font-family: 'DM Serif Display', serif;
+            font-size: 3rem;
+            color: var(--green);
+            margin: 1rem 0 0.3rem;
+        }
+
+        .pricing-card .price span {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+            color: var(--text-light);
+            font-weight: 300;
+        }
+
+        .pricing-card .price-note {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-bottom: 2rem;
+        }
+
+        .pricing-perks {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-perks li {
+            padding: 0.6rem 0;
+            font-size: 0.95rem;
+            color: var(--text-light);
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+        }
+
+        .pricing-perks li::before {
+            content: '✓';
+            color: var(--green);
+            font-weight: 600;
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+            justify-content: center;
+        }
+
+        /* LOCATION */
+        .location {
+            background: var(--white);
+        }
+
+        .location-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .location-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .location-details {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+
+        .location-details li {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid var(--cream-dark);
+        }
+
+        .location-details .icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: var(--cream);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .location-details strong {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 0.2rem;
+        }
+
+        .location-details span {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .location-map {
+            border-radius: 20px;
+            overflow: hidden;
+            height: 450px;
+        }
+
+        .location-map iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        /* CTA */
+        .cta-section {
+            background: var(--charcoal);
+            text-align: center;
+            padding: 6rem 3rem;
+        }
+
+        .cta-section h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: rgba(255,255,255,0.6);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--charcoal);
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding: 2.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        footer .footer-logo {
+            font-family: 'DM Serif Display', serif;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        footer .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        footer .footer-links a {
+            color: rgba(255,255,255,0.5);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s;
+        }
+
+        footer .footer-links a:hover {
+            color: white;
+        }
+
+        /* ANIMATIONS */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 900px) {
+            section {
+                padding: 5rem 1.5rem;
+            }
+
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 75%;
+                max-width: 320px;
+                height: 100vh;
+                background: var(--green);
+                flex-direction: column;
+                padding: 6rem 2rem 2rem;
+                gap: 1.5rem;
+                transition: right 0.4s ease;
+            }
+
+            .nav-links.open {
+                right: 0;
+            }
+
+            .nav-links a {
+                color: rgba(255,255,255,0.85) !important;
+                font-size: 1.1rem;
+            }
+
+            .nav-cta {
+                background: var(--wood-light) !important;
+                color: var(--charcoal) !important;
+                text-align: center;
+            }
+
+            .hero {
+                padding: 2rem 1.5rem;
+                min-height: 600px;
+            }
+
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .about-images {
+                order: -1;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 400px;
+            }
+
+            .location-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .location-map {
+                height: 300px;
+            }
+
+            footer {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+                padding: 2rem 1.5rem;
+            }
+
+            .gallery-item {
+                width: 80vw;
+            }
+
+            .gallery-scroll {
+                padding: 0 1.5rem;
+            }
+
+            .gallery-header {
+                padding: 0 1.5rem;
+            }
+        }
+    </style>
 </head>
+<body>
 
-<body id="homepage" class="de_light">
-
-    <div id="wrapper">
-
-        <!-- header begin -->
-        <header class="transparent no-border">
-            <div class="info">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div class="column">Coworking au Mans Lundi - Vendredi <span class="id-color"><strong>08:00-18:00</strong></span></div>
-                            <!-- social icons -->
-                            <div class="column social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-rss"></i></a>
-                                <a href="#"><i class="fa fa-google-plus"></i></a>
-                                <a href="#"><i class="fa fa-envelope-o"></i></a>
-                            </div>
-                            <!-- social icons close -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-12">
-                        <!-- logo begin -->
-                        <div id="logo" >
-                            <a href="index.html">
-                                <img class="logo" src="images/logo.png" alt="">
-                            </a>
-                        </div>
-                        <!-- logo close -->
-
-                        <!-- small button begin -->
-                        <span id="menu-btn"></span>
-                        <!-- small button close -->
-
-                        <!-- mainmenu begin -->
-							<nav class="md-flex">
-									<ul id="mainmenu">
-										<li><a href="#content">Accueil</a></li>
-										<li><a href="#about">A propos</a></li>
-										<li><a href="#pricing">Tarifs</a></li>
-										<li><a href="#contact">Contact</a></li>
-									</ul>
-								</nav>
-							
-							<!-- mainmenu close -->
-
-                    </div>
-
-                </div>
-            </div>
-        </header>
-        <!-- header close -->
-
-        <!-- content begin -->
-        <div id="content" class="no-bottom no-top">
-
-            <!-- revolution slider begin -->
-            <section id="section-slider" class="fullwidthbanner-container" aria-label="section-slider">
-                <div id="revolution-slider">
-                    <ul>
-                        <li data-transition="fade" data-slotamount="10" data-masterspeed="200" data-thumb="">
-                            <!--  BACKGROUND IMAGE -->
-                            <img src="images/slider/wide7.jpg" alt="" />
-                            <div class="tp-caption small-white sfr"
-                                data-x="0"
-                                data-y="140"
-                                data-speed="1200"
-                                data-start="400"
-                                data-easing="easeOutExpo"
-                                data-endspeed="450">
-                                Entourez-vous des bonnes personnes
-                            </div>
-
-                            <div class="tp-caption big-custom-1 white sfr"
-                                data-x="0"
-                                data-y="center"
-                                data-speed="1200"
-                                data-start="800"
-                                data-easing="easeOutExpo"
-                                data-endspeed="400">
-                                Espace de coworking<br>au coeur du Mans.
-                            </div>
-
-                            <div class="tp-caption sfr"
-                                data-x="0"
-                                data-y="345"
-                                data-speed="1200"
-                                data-start="1200"
-                                data-easing="easeOutExpo">
-                                <a href="#pricing" class="btn-custom">Reservez maintenant
-                                </a>
-                            </div>
-                        </li>
-						
-						<li data-transition="fade" data-slotamount="10" data-masterspeed="200" data-thumb="">
-                            <!--  BACKGROUND IMAGE -->
-                            <img src="images/slider/wide12.jpg" alt="" />
-                            <div class="tp-caption small-white sfr"
-                                data-x="0"
-                                data-y="140"
-                                data-speed="1200"
-                                data-start="400"
-                                data-easing="easeOutExpo"
-                                data-endspeed="450">
-                                Un lieu ou accomplir vos projets
-                            </div>
-
-                            <div class="tp-caption big-custom-1 white sfr"
-                                data-x="0"
-                                data-y="center"
-                                data-speed="1200"
-                                data-start="800"
-                                data-easing="easeOutExpo"
-                                data-endspeed="400">
-                                Rencontrez d'autres<br>Entrepreuneurs.
-                            </div>
-
-                            <div class="tp-caption sfr"
-                                data-x="0"
-                                data-y="345"
-                                data-speed="1200"
-                                data-start="1200"
-                                data-easing="easeOutExpo">
-                                <a href="#pricing" class="btn-custom">Reservez maintenant
-                                </a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </section>
-            <!-- revolution slider close -->
-			
-			<!-- section begin -->
-            <section id="section-no-bg" class="text-light" data-bgcolor="#6f798a">
-                <div class="container">
-                    <div class="row align-items-center">
-						<div class="col-md-6">
-                            <img src="images/misc/pic_12.jpg" alt="" class="img-responsive wow fadeInUp" data-wow-duration="1.5s">
-                        </div>
-						
-                        <div class="col-md-6 wow fadeInUp">
-								<h2>Un espace agréable et bienveillant pour les entrepreuneurs qui changent le monde</h2>
-
-								<p>Notre espace encourage la collaboration, la synergie et le partage d'idées, créant ainsi une atmosphère propice à l'émergence de projets novateurs. Chaque coin de notre espace a été pensé pour favoriser un sentiment d'appartenance et de soutien mutuel, car nous sommes convaincus que c'est dans cet environnement bienveillant que naissent les idées qui transforment le monde.</p>
-
-								<a href="#contact" class="btn-custom">Nous contacter</a>
-                        </div>
-                        
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-            </section>
-            <!-- section close -->
-			
-
-            <section id="about" data-bgcolor="#F7F8FA">
-
-                <div class="container">
-                    <div class="row">
-							<div class="col-md-6 offset-md-3 text-center wow fadeInUp">
-								<h5 class="s2">Découvrez</h5>
-								<h1>Nos Atouts</h1>
-								<div class="separator"><span><i class="fa fa-square"></i></span></div>
-								<div class="spacer-single"></div>
-							</div>
-							
-							<div class="clearfix"></div>
-							
-							<div class="col-md-3 wow fadeInUp" data-wow-delay="0s">
-								<img src="images/misc/cwr_3.jpg" class="img-responsive" alt="">
-								
-                                <div class="text padding30" data-bgcolor="#ffffff">									
-                                    <h3>Equipement confortable</h3>
-                                    <p>Vous êtes plus productif lorsque vous êtes bien installés ? <br>Nous aussi ! Travail au bureau ou plus relaxé dans le canapé, il y en a pour tout le monde dans notre espace de coworking au Mans. </p>
-                                </div>
-							</div>
-
-							<div class="col-md-3 wow fadeInUp" data-wow-delay=".3s">
-									<div class="text padding30" data-bgcolor="#ffffff">									
-										<h3>Proche des transports</h3>
-										<p>A 200m de l'arret de tram "Gares" du Mans, c'est vous dire notre proximité. Ne perdez plus votre temps dans les transports et concentrez vous sur l'essentiel.</p>
-									</div>
-									
-									<img src="images/tram1.jpg" class="img-responsive" alt="">
-							</div>
-
-							<div class="col-md-3 wow fadeInUp" data-wow-delay=".6s">
-									<img src="images/misc/cwr_2.jpg" class="img-responsive" alt="">
-									
-									<div class="text padding30" data-bgcolor="#ffffff">									
-										<h3>Wifi dernier cri</h3>
-										<p>Fini les visios qui laggent. Unicowork, l'espace de coworking au mans est équipé avec la fibre optique pour vous garantir un confort de travail. (oui même pour procrastiner sur youtube)</p>
-									</div>
-							</div>
-
-							<div class="col-md-3 wow fadeInUp" data-wow-delay=".9s">
-									<div class="text padding30" data-bgcolor="#ffffff">									
-										<h3>Du café pour tous</h3>
-										<p>Rejoignez-nous pour une expérience de coworking qui stimule les sens et nourrit la collaboration, avec une tasse de café ou de thé qui réunit tous ceux qui partagent l'amour de l'innovation au Mans.</p>
-									</div>
-									
-									<img src="images/misc/cwr_4.jpg" class="img-responsive" alt="">
-							</div>
-							
-						</div>
-                        
-                    </div>
-					
-            </section>
-			
-			
-			<!-- section begin -->
-            <section id="pricing" data-bgimage="url(images/background/bg-33.jpg)" data-stellar-background-ratio=".1">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 offset-md-3 text-center text-light wow fadeInUp">
-							<h5 class="s2">Choisissez</h5>
-                            <h1>Votre formule</h1>
-                            <div class="separator"><span><i class="fa fa-square"></i></span></div>
-                            <div class="spacer-single"></div>
-                        </div>
-
-
-                        <div class="col-md-12">
-                            <div class="item pricing">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-sm-4 wow fadeInUp" data-wow-delay="0s">
-                                            <div class="pricing-s1 light mb30">
-                                                <div class="top">
-                                                    <h2>Journée</h2>
-                                                    <p class="price"><span class="currency">€</span> <b>10 HT</b> <span class="month">/jour</span></p>
-                                                </div>
-                                                <div class="bottom">
-                                                    <ul>
-                                                        <li><i class="icon_check"></i>Wifi super rapide</li>
-                                                        <li><i class="icon_check"></i>Café gratuit</li>
-                                                        <li><i class="icon_check"></i>Coworkers geniaux</li>
-                                                        <li><i class="icon_check"></i>Liberté de placement</li>
-                                                    </ul>
-                                                    <a href="#" class="btn-custom">Réserver</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4 wow fadeInUp" data-wow-delay=".3s">
-                                            <div class="pricing-s1 light mb30">
-                                                <div class="ribbon">Recommandé</div>
-                                                <div class="top">
-                                                    <h2>Mensuel</h2>
-                                                    <p class="price"><span class="currency">€</span> <b>200 HT</b> <span class="month">/mois</span></p>
-                                                </div>
-                                                <div class="bottom">
-                                                    <ul>
-                                                        <li><i class="icon_check"></i>Wifi super rapide</li>
-                                                        <li><i class="icon_check"></i>Double des clés</li>
-                                                        <li><i class="icon_check"></i>Café gratuit</li>
-                                                        <li><i class="icon_check"></i>Coworkers geniaux</li>
-                                                        <li><i class="icon_check"></i>Bureau reservé</li>
-                                                    </ul>
-                                                    <a href="#" class="btn-custom">Réserver</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-sm-4 wow fadeInUp" data-wow-delay=".6s">
-                                            <div class="pricing-s1 light mb30">
-                                                <div class="top">
-                                                    <h2>Annuel</h2>
-                                                    <p class="price"><span class="currency">€</span> <b>2000 HT</b> <span class="month">/an</span></p>
-                                                </div>
-                                                <div class="bottom">
-                                                    <ul>
-                                                        <li><i class="icon_check"></i>Wifi super rapide</li>
-                                                        <li><i class="icon_check"></i>Double des clés</li>
-                                                        <li><i class="icon_check"></i>Café gratuit</li>
-                                                        <li><i class="icon_check"></i>Coworkers geniaux</li>
-                                                        <li><i class="icon_check"></i>Bureau reservé</li>
-                                                    </ul>
-                                                    <a href="#" class="btn-custom">Réserver</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-            <!-- section close -->
-
-            <!-- section begin -->
-            <section id="section-services" class="text-light" data-bgcolor="#464d58">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 offset-md-3 text-center text-light wow fadeInUp">
-							<h5 class="s2">Unicowork,</h5>
-                            <h1>Un lieu pour</h1>
-                            <div class="separator"><span><i class="fa fa-square"></i></span></div>
-                            <div class="spacer-single"></div>
-                        </div>
-						
-								<div class="col-md-4 wow fadeInUp" data-wow-delay="0s">
-                                    <div class="box-icon">
-                                        <span class="icon wow fadeIn" data-wow-delay=".5s"><i class="id-color icon-chat"></i></span>
-                                        <div class="text">
-                                            <h3>Rencontrer</h3>
-                                            <p>A Unicowork, rencontrer de nouvelles personnes c'est une expérience enrichissante. Les espaces communs, deviennent le lieu idéal pour tisser des liens professionnels et personnels.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4 wow fadeInUp" data-wow-delay=".25s">
-                                    <div class="box-icon">
-                                        <span class="icon wow fadeIn" data-wow-delay=".75s"><i class="id-color icon-pencil"></i></span>
-                                        <div class="text">
-                                            <h3>Créer</h3>
-                                            <p>La créativité devient une force motrice. Chaque coin est une toile d'opportunités où les esprits créatifs s'entremêlent, façonnant l'innovation. </p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-md-4 wow fadeInUp" data-wow-delay=".5s">
-                                    <div class="box-icon">
-                                        <span class="icon wow fadeIn" data-wow-delay="1s"><i class="id-color icon-layers"></i></span>
-                                        <div class="text">
-                                            <h3>Collaborer</h3>
-                                            <p>A Unicowork, la collaboration est une véritable valeur ajoutée. Les espaces ouverts et les salles de réunion ont été conçus pour faciliter la synergie entre individus aux compétences variées.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                    </div>
-                </div>
-            </section>
-            <!-- section close -->
-			
-			<section id="section-gallery-carousel" aria-label="section" class="no-top no-bottom">
-				<div class="owl-custom-nav">
-					<a class="btn-next"></a>
-					<a class="btn-prev"></a>
-				</div>
-			
-				<div id="gallery-carousel-3" class="owl-carousel owl-theme owl-slide">
-
-                <!-- gallery item -->
-                <div class="item s2">
-                    <div class="picframe">
-                        <a class="image-popup-no-margins" href="images/portfolio-coworking/pf%20(1).jpg">
-                            <span class="overlay-v">
-                                <span class="pf_text">
-                                    <span class="project-name">Modern Seat</span>
-                                </span>
-                            </span>
-							<img src="images/portfolio-coworking/pf%20(1).jpg" alt="" />
-                        </a>
-                    </div>
-                </div>
-                <!-- close gallery item -->
-
-                <!-- gallery item -->
-                <div class="item s2">
-                    <div class="picframe">
-                        <a class="image-popup-no-margins" href="images/portfolio-coworking/pf%20(2).jpg">
-                            <span class="overlay-v">
-                                <span class="pf_text">
-                                    <span class="project-name">Teamworks Seat</span>
-                                </span>
-                            </span>
-							<img src="images/portfolio-coworking/pf%20(2).jpg" alt="" />
-                        </a>
-                    </div>
-                </div>
-                <!-- close gallery item -->
-
-                <!-- gallery item -->
-                <div class="item s2">
-                    <div class="picframe">
-                        <a class="image-popup-no-margins" href="images/portfolio-coworking/pf%20(3).jpg">
-                            <span class="overlay-v">
-                                <span class="pf_text">
-                                    <span class="project-name">Meeting Room</span>
-                                </span>
-                            </span>
-							<img src="images/portfolio-coworking/pf%20(3).jpg" alt="" />
-                        </a>
-                    </div>
-                </div>
-                <!-- close gallery item -->
-
-                <!-- gallery item -->
-                <div class="item s2">
-                    <div class="picframe">
-                        <a class="image-popup-no-margins" href="images/portfolio-coworking/pf%20(4).jpg">
-                            <span class="overlay-v">
-                                <span class="pf_text">
-                                    <span class="project-name">Food &amp; Drinks</span>
-                                </span>
-                            </span>
-							<img src="images/portfolio-coworking/pf%20(4).jpg" alt="" />
-                        </a>                        
-                    </div>
-                </div>
-                <!-- close gallery item -->
-
-                <!-- gallery item -->
-                <div class="item s2">
-                    <div class="picframe">
-                        <a class="image-popup-no-margins" href="images/portfolio-coworking/pf%20(5).jpg">
-                            <span class="overlay-v">
-                                <span class="pf_text">
-                                    <span class="project-name">Locker Room</span>
-                                </span>
-                            </span>
-							<img src="images/portfolio-coworking/pf%20(5).jpg" alt="" />
-                        </a>                        
-                    </div>
-                </div>
-                <!-- close gallery item -->
-
-                <!-- gallery item -->
-                <div class="item s2">
-                    <div class="picframe">
-                        <a class="image-popup-no-margins" href="images/portfolio-coworking/pf%20(6).jpg">
-                            <span class="overlay-v">
-                                <span class="pf_text">
-                                    <span class="project-name">Fitness Room</span>
-                                </span>
-                            </span>
-							<img src="images/portfolio-coworking/pf%20(6).jpg" alt="" />
-                        </a>                        
-                    </div>
-                </div>
-                <!-- close gallery item -->
-				
-            </div>
-			</section>
-			
-			<!-- section begin -->
-            <section id="section-partners">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-6 offset-md-3 text-center wow fadeInUp">
-							<h5 class="s2">Avec qui</h5>
-                            <h1>Nous travaillons</h1>
-                            <div class="separator"><span><i class="fa fa-square"></i></span></div>
-                            <div class="spacer-single"></div>
-                        </div>
-						
-						<div class="col-md-12 wow fadeInUp" data-wow-delay="0s">
-							<div id="logo-carousel" class="owl-carousel owl-theme">
-								<img src="images/logo-2/1.png" class="img-responsive" alt="">
-								<img src="images/logo-2/2.png" class="img-responsive" alt="">
-								<img src="images/logo-2/3.png" class="img-responsive" alt="">
-								<img src="images/logo-2/4.png" class="img-responsive" alt="">
-								<img src="images/logo-2/5.png" class="img-responsive" alt="">
-								<img src="images/logo-2/6.png" class="img-responsive" alt="">
-								<img src="images/logo-2/7.png" class="img-responsive" alt="">
-								<img src="images/logo-2/8.png" class="img-responsive" alt="">
-							</div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- section close -->
-			
-			
-			<!-- section begin -->
-            <section id="section-testimonial-coworking" data-bgimage="url(images/background/bg-34.jpg)" class="text-light" data-stellar-background-ratio=".1">
-                <div class="container">
-                    <div class="row">
-
-                        <div class="col-md-8 offset-md-2">
-                            
-							<div id="testimonial-carousel-single" class="owl-carousel owl-theme wow fadeInUp">
-								<blockquote class="testimonial-big">
-									<span class="title">Un lieu design et accessible!</span>
-										Mon séjour à Unicowork a été une excellente expérience. La conception soignée et moderne de cet espace de coworking au cœur du Mans crée une atmosphère propice à la productivité. Les installations bien équipées et les espaces de travail flexibles ont réellement amélioré mon efficacité professionnelle. 
-
-									<span class="name">Matthieu Porte, Développeur junior</span>
-								</blockquote>
-								
-								<blockquote class="testimonial-big">
-									<span class="title">Un lieu design et accessible!</span>
-										Mon séjour à Unicowork a été une excellente expérience. La conception soignée et moderne de cet espace de coworking au cœur du Mans crée une atmosphère propice à la productivité. Les installations bien équipées et les espaces de travail flexibles ont réellement amélioré mon efficacité professionnelle. 
-
-									<span class="name">Vincent Jousse, Développeur sénior</span>
-								</blockquote>
-								
-								<blockquote class="testimonial-big">
-									<span class="title">Un lieu design et accessible!</span>
-										Mon séjour à Unicowork a été une excellente expérience. La conception soignée et moderne de cet espace de coworking au cœur du Mans crée une atmosphère propice à la productivité. Les installations bien équipées et les espaces de travail flexibles ont réellement amélioré mon efficacité professionnelle. 
-
-									<span class="name">Amaury Leproux, Développeur</span>
-								</blockquote>
-							</div>
-							
-                        </div>
-
-                    </div>
-                </div>
-            </section>
-            <!-- section close -->
-			
-			<!-- section begin -->
-            <section id="view-all-projects" class="call-to-action text-light padding40" aria-label="cta" data-bgcolor="#6f798a">
-                <div class="container">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <h3 class="size-2 no-margin">Prêt à changer le monde ? </h3>
-                        </div>
-
-                        <div class="col-md-4 text-right">
-                            <a href="#pricing" class="btn-custom wow fadeInUp">Réservez maintenant</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <!-- logo carousel section close -->
-			
-			</div>
-			<div id="contact">
-		        <div id="content" class="no-top">
-		            <section id="de-map" aria-label="map-container">
-		                <div class="container">
-							<div class="row">
-								<div class="col-md-12">
-									<div class="map-container map-fullwidth">
-										<iframe src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=120%20rue%20du%20bourg%20bel%C3%A9,%2072000%20le%20mans+(Unicowork.fr)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-									</div>
-								</div>
-							</div>
-						</div>
-		            </section>
-
-		            <div class="container">
-		                <div class="row">
-
-		                    <div class="col-md-8">
-		                        <form name="contactForm" id='contact_form' method="post">
-		                            <div class="row">
-		                            	<div class="col-md-12 mb10">
-		                            		<h3>Ecrivez nous</h3>
-		                            	</div>
-		                                <div class="col-md-6">
-		                                    <div id='name_error' class='error'>Merci d'entrer votre nom</div>
-		                                    <div>
-		                                        <input type='text' name='Name' id='name' class="form-control" placeholder="Votre nom" required>
-		                                    </div>
-
-		                                    <div id='email_error' class='error'>Merci d'entrer une adresse mail valide</div>
-		                                    <div>
-		                                        <input type='email' name='Email' id='email' class="form-control" placeholder="Votre email" required>
-		                                    </div>
-
-		                                    <div id='phone_error' class='error'>Merci d'entrer votre numéro de téléphone</div>
-		                                    <div>
-		                                        <input type='text' name='phone' id='phone' class="form-control" placeholder="Votre numéro de téléphone" required>
-		                                    </div>
-		                                </div>
-		                                <div class="col-md-6">
-		                                    <div id='message_error' class='error'>Merci d'écrire un message</div>
-		                                    <div>
-		                                        <textarea name='message' id='message' class="form-control" placeholder="Votre message" required></textarea>
-		                                    </div>
-		                                </div>
-
-		                                <div class="col-md-12">
-		                                    <div class="g-recaptcha" data-sitekey="copy-your-site-key-here"></div>
-		                                    <p id='submit' class="mt20">
-		                                        <input type='submit' id='send_message' value='Envoyer' class="btn btn-line">
-		                                    </p>
-		                                </div>
-		                            </div>
-		                        </form>
-
-		                        <div id="success_message" class='success'>
-		                            Votre message à été envoyé avec succès
-		                        </div>
-		                        <div id="error_message" class='error'>
-		                        	Une erreur s'est produite
-		                        </div>
-
-		                    </div>
-
-		                    <div id="sidebar" class="col-md-4">
-
-		                        <div class="widget widget_text">
-		                            <h3>Informations utiles :</h3>
-		                            <address>
-		                                <span><strong>Addresse:</strong>120 rue du Bourg Belé, 72000, Le Mans</span>
-		                                <span><strong>Tél:</strong>07 88 78 60 46</span>
-		                                <span><strong>Email:</strong><a href="mailto:amaury.leproux@gmail.com">contact@unicowork.com</a></span>
-		                                <span><strong>Horaires</strong>Lundi - Vendredi 08:00 - 18:00</span>
-		                            </address>
-		                        </div>
-		                    </div>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-
-
-            <!-- footer begin -->
-            <footer>
-            <div class="container pb80">
-                <div class="row align-items-center">
-                    <div class="col-md-2">
-                        <img src="images/logo-2.png" alt="" style="width:100px">
-                    </div>
-
-                    <div class="col-md-6">
-                        &copy; Copyright 2024</span>
-                    </div>
-
-                    <div class="col-md-4 text-right">
-                        <div class="social-icons">
-                            <a href="#"><i class="fa fa-instagram fa-lg"></i></a>
-                            <a href="#"><i class="fa fa-twitter fa-lg"></i></a>
-                            <a href="#"><i class="fa fa-slack fa-lg"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-			
-        </footer>
-            <!-- footer close -->
+<!-- NAV -->
+<nav id="nav">
+    <a href="#" class="nav-logo">Unicowork</a>
+    <ul class="nav-links" id="navLinks">
+        <li><a href="#about">L'espace</a></li>
+        <li><a href="#features">Avantages</a></li>
+        <li><a href="#pricing">Tarifs</a></li>
+        <li><a href="#location">Accès</a></li>
+        <li><a href="#contact" class="nav-cta">Réserver</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+        <span></span><span></span><span></span>
     </div>
+</nav>
 
+<!-- HERO -->
+<section class="hero">
+    <div class="hero-bg">
+        <img src="images/IMG_0754.jpg" alt="Espace de coworking Unicowork au Mans">
+    </div>
+    <div class="hero-content">
+        <div class="hero-tag">Coworking au Mans • Centre-ville</div>
+        <h1>Travaillez <em>autrement</em>, ensemble.</h1>
+        <p>Un espace chaleureux pour les indépendants et entrepreneurs au cœur du Mans. Bureau dédié, fibre, café — tout est prêt.</p>
+        <div class="hero-actions">
+            <a href="#pricing" class="btn btn-primary">Voir les tarifs</a>
+            <a href="#about" class="btn btn-outline">Découvrir l'espace</a>
+        </div>
+    </div>
+</section>
 
-    <!-- Javascript Files
-    ================================================== -->
-    <script src="js/plugins.js"></script>
-    <script src="js/designesia.js"></script>
+<!-- ABOUT -->
+<section class="about" id="about">
+    <div class="about-grid">
+        <div class="about-text fade-up">
+            <span class="section-label">L'espace</span>
+            <h2 class="section-title">Un vrai lieu de travail,<br>pas un open space de plus.</h2>
+            <p>Unicowork, c'est un espace pensé par des entrepreneurs pour des entrepreneurs. On a voulu créer l'endroit où on aimerait travailler nous-mêmes : lumineux, calme, bien équipé, et avec des gens intéressants autour.</p>
+            <p>Panneaux acoustiques aux murs, mur végétal, mobilier confortable — chaque détail a été choisi pour que vous puissiez vous concentrer sur ce qui compte : votre projet.</p>
+            <div class="about-stats">
+                <div class="stat">
+                    <div class="stat-number">200m</div>
+                    <div class="stat-label">du tram Gares</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">Fibre</div>
+                    <div class="stat-label">optique incluse</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">8h–18h</div>
+                    <div class="stat-label">du lundi au vendredi</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">☕</div>
+                    <div class="stat-label">café à volonté</div>
+                </div>
+            </div>
+        </div>
+        <div class="about-images fade-up">
+            <img src="images/IMG_0755.jpg" alt="Espace de travail collaboratif">
+            <img src="images/IMG_0753.jpg" alt="Poste de travail équipé">
+            <img src="images/IMG_0756.jpg" alt="Espace détente coworking">
+        </div>
+    </div>
+</section>
 
-    <!-- SLIDER REVOLUTION SCRIPTS  -->
-    <script src="rs-plugin/js/jquery.themepunch.plugins.min.js"></script>
-    <script src="rs-plugin/js/jquery.themepunch.revolution.min.js"></script>
+<!-- GALLERY -->
+<section class="gallery">
+    <div class="gallery-header fade-up">
+        <span class="section-label">En images</span>
+        <h2 class="section-title">Votre futur bureau</h2>
+    </div>
+    <div class="gallery-scroll">
+        <div class="gallery-item">
+            <img src="images/IMG_0754.jpg" alt="Mur végétal et postes de travail">
+            <p>Mur végétal & postes de travail</p>
+        </div>
+        <div class="gallery-item">
+            <img src="images/IMG_0755.jpg" alt="Espace de travail principal">
+            <p>Espace de travail principal</p>
+        </div>
+        <div class="gallery-item">
+            <img src="images/IMG_0753.jpg" alt="Zone multi-écrans">
+            <p>Zone multi-écrans & bar</p>
+        </div>
+        <div class="gallery-item">
+            <img src="images/IMG_0756.jpg" alt="Espace détente">
+            <p>Coin détente & réunion informelle</p>
+        </div>
+    </div>
+</section>
 
+<!-- FEATURES -->
+<section class="features" id="features">
+    <div class="features-header fade-up">
+        <span class="section-label">Avantages</span>
+        <h2 class="section-title">Tout ce qu'il faut pour bien travailler.</h2>
+    </div>
+    <div class="features-grid">
+        <div class="feature-card fade-up">
+            <div class="feature-icon">📶</div>
+            <h3>Fibre optique</h3>
+            <p>Connexion ultra-rapide pour vos visios, uploads et downloads. Fini les appels qui coupent.</p>
+        </div>
+        <div class="feature-card fade-up">
+            <div class="feature-icon">🔇</div>
+            <h3>Acoustique soignée</h3>
+            <p>Panneaux acoustiques sur les murs pour que les appels des uns ne gênent pas la concentration des autres.</p>
+        </div>
+        <div class="feature-card fade-up">
+            <div class="feature-icon">🪑</div>
+            <h3>Mobilier ergonomique</h3>
+            <p>Bureaux spacieux, chaises ergonomiques, repose-pieds — votre dos vous remerciera.</p>
+        </div>
+        <div class="feature-card fade-up">
+            <div class="feature-icon">🔑</div>
+            <h3>Vos propres clés</h3>
+            <p>Avec un abonnement mensuel ou annuel, vous avez vos clés et pouvez venir quand vous voulez.</p>
+        </div>
+        <div class="feature-card fade-up">
+            <div class="feature-icon">🚋</div>
+            <h3>Hyper accessible</h3>
+            <p>À 200 mètres de l'arrêt de tram "Gares" du Mans. En plein centre-ville, tout est à portée.</p>
+        </div>
+        <div class="feature-card fade-up">
+            <div class="feature-icon">🤝</div>
+            <h3>Communauté</h3>
+            <p>Des développeurs, traders, créatifs — échangez, collaborez, et avancez ensemble.</p>
+        </div>
+    </div>
+</section>
 
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+    <div class="pricing-header fade-up">
+        <span class="section-label">Tarifs</span>
+        <h2 class="section-title">Simple et transparent</h2>
+        <p>Sans engagement, sans surprise. Choisissez la formule qui vous convient.</p>
+    </div>
+    <div class="pricing-grid">
+        <div class="pricing-card fade-up">
+            <h3>Journée</h3>
+            <div class="price">10€ <span>HT / jour</span></div>
+            <div class="price-note">Idéal pour tester</div>
+            <ul class="pricing-perks">
+                <li>Poste de travail au choix</li>
+                <li>Wifi fibre optique</li>
+                <li>Café & thé inclus</li>
+                <li>Accès 8h — 18h</li>
+            </ul>
+            <a href="mailto:contact@unicowork.com?subject=Réservation journée" class="btn btn-outline" style="color: var(--green); border-color: var(--green);">Réserver</a>
+        </div>
+        <div class="pricing-card featured fade-up">
+            <div class="pricing-badge">Populaire</div>
+            <h3>Mensuel</h3>
+            <div class="price">200€ <span>HT / mois</span></div>
+            <div class="price-note">Votre bureau attitré</div>
+            <ul class="pricing-perks">
+                <li>Bureau dédié réservé</li>
+                <li>Wifi fibre optique</li>
+                <li>Café & thé inclus</li>
+                <li>Double des clés</li>
+                <li>Accès flexible</li>
+            </ul>
+            <a href="mailto:contact@unicowork.com?subject=Réservation mensuelle" class="btn btn-green">Réserver</a>
+        </div>
+        <div class="pricing-card fade-up">
+            <h3>Annuel</h3>
+            <div class="price">166€ <span>HT / mois</span></div>
+            <div class="price-note">Soit 2 000€ HT / an</div>
+            <ul class="pricing-perks">
+                <li>Bureau dédié réservé</li>
+                <li>Wifi fibre optique</li>
+                <li>Café & thé inclus</li>
+                <li>Double des clés</li>
+                <li>Accès flexible</li>
+            </ul>
+            <a href="mailto:contact@unicowork.com?subject=Réservation annuelle" class="btn btn-outline" style="color: var(--green); border-color: var(--green);">Réserver</a>
+        </div>
+    </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location" id="location">
+    <div class="location-grid">
+        <div class="location-info fade-up">
+            <span class="section-label">Accès</span>
+            <h2 class="section-title">Nous trouver</h2>
+            <ul class="location-details">
+                <li>
+                    <div class="icon">📍</div>
+                    <div>
+                        <strong>Adresse</strong>
+                        <span>120 rue du Bourg Belé, 72000 Le Mans</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="icon">🚋</div>
+                    <div>
+                        <strong>Transports</strong>
+                        <span>À 200m de l'arrêt de tram "Gares"</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="icon">🕐</div>
+                    <div>
+                        <strong>Horaires</strong>
+                        <span>Lundi — Vendredi, 8h00 — 18h00</span>
+                    </div>
+                </li>
+                <li>
+                    <div class="icon">📞</div>
+                    <div>
+                        <strong>Contact</strong>
+                        <span>07 88 78 60 46 — contact@unicowork.com</span>
+                    </div>
+                </li>
+            </ul>
+            <a href="mailto:contact@unicowork.com?subject=Visite Unicowork" class="btn btn-green">Planifier une visite</a>
+        </div>
+        <div class="location-map fade-up">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2677.5!2d0.1956!3d47.9966!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47e28870e7f1c5a1%3A0x0!2s120+Rue+du+Bourg+Bel%C3%A9%2C+72000+Le+Mans!5e0!3m2!1sfr!2sfr!4v1700000000000!5m2!1sfr!2sfr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+    <h2>Prêt à venir travailler<br>avec nous ?</h2>
+    <p>Passez nous voir pour une journée d'essai gratuite. On vous montre l'espace, on boit un café, et vous décidez.</p>
+    <a href="mailto:contact@unicowork.com?subject=Journée d'essai Unicowork" class="btn btn-primary" style="font-size: 1.05rem;">Essayer gratuitement →</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">Unicowork</div>
+    <div class="footer-links">
+        <a href="mailto:contact@unicowork.com">contact@unicowork.com</a>
+        <a href="tel:+33788786046">07 88 78 60 46</a>
+        <span style="color: rgba(255,255,255,0.3); font-size: 0.85rem;">© 2025 Unicowork</span>
+    </div>
+</footer>
+
+<script>
+    // Scroll nav
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 60);
+    });
+
+    // Mobile menu
+    function toggleMenu() {
+        document.getElementById('navLinks').classList.toggle('open');
+    }
+
+    // Close menu on link click
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            document.getElementById('navLinks').classList.remove('open');
+        });
+    });
+
+    // Fade-up observer
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
 
 </body>
 </html>
