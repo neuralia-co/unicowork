@@ -113,7 +113,7 @@
                 "name": "Combien coûte un espace de coworking au Mans ?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Chez Unicowork, les tarifs commencent à 10€ HT la journée. L'abonnement mensuel avec bureau dédié est à 200€ HT/mois, et l'abonnement annuel revient à 166€ HT/mois (2000€ HT/an)."
+                    "text": "Chez Unicowork, les tarifs commencent à 10€ HT la journée pour un poste de travail avec wifi fibre et café inclus. L'abonnement mensuel avec bureau dédié est à 200€ HT/mois, et l'abonnement annuel revient à 166€ HT/mois (2 000€ HT/an). Tous les forfaits incluent la fibre optique, le café et le thé à volonté."
                 }
             },
             {
@@ -121,20 +121,95 @@
                 "name": "Où se trouve Unicowork au Mans ?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Unicowork est situé au 120 rue du Bourg Belé, 72000 Le Mans, à 200 mètres de l'arrêt de tram Gares, en plein centre-ville."
+                    "text": "Unicowork est situé au 120 rue du Bourg Belé, 72000 Le Mans, en plein centre-ville. L'espace de coworking est à seulement 200 mètres de l'arrêt de tram Gares, ce qui en fait le coworking le plus accessible du Mans."
                 }
             },
             {
                 "@type": "Question",
-                "name": "Quels équipements sont inclus dans le coworking Unicowork ?",
+                "name": "Quels équipements sont inclus dans le coworking ?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Unicowork propose la fibre optique, des panneaux acoustiques, du mobilier ergonomique, du café et thé à volonté, et un double des clés pour les abonnés mensuels et annuels."
+                    "text": "Unicowork propose la fibre optique, des panneaux acoustiques pour le confort sonore, du mobilier ergonomique (chaises, bureaux spacieux, repose-pieds), du café et thé à volonté, un mur végétal, et un double des clés pour les abonnés mensuels et annuels. L'espace dispose aussi d'un coin détente avec canapé et d'un bar haut pour les pauses."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Puis-je venir essayer avant de m'engager ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Bien sûr ! Nous proposons une journée d'essai gratuite pour découvrir l'espace de coworking, rencontrer les autres coworkers et voir si l'ambiance vous convient. Contactez-nous pour planifier votre visite."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Quels sont les horaires d'ouverture ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Unicowork est ouvert du lundi au vendredi de 8h00 à 18h00. Les abonnés mensuels et annuels disposent de leurs propres clés pour un accès flexible selon leurs besoins."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Y a-t-il des places de parking à proximité ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Oui, plusieurs parkings publics se trouvent à proximité immédiate d'Unicowork en centre-ville du Mans. L'espace est aussi accessible à pied depuis la gare et à 200 mètres de l'arrêt de tram Gares."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Peut-on recevoir des clients dans l'espace ?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Bien sûr ! Vous pouvez accueillir vos clients et partenaires chez Unicowork. L'espace dispose d'un coin détente avec canapé idéal pour les rendez-vous dans un cadre professionnel et convivial."
                 }
             }
         ]
     }
     </script>
+
+    <!-- LocalBusiness Schema complémentaire -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "Unicowork",
+        "description": "Espace de coworking au centre-ville du Mans avec bureaux dédiés, fibre optique et café inclus.",
+        "url": "https://unicowork.fr",
+        "telephone": "+33638112524",
+        "email": "vincent@famille-porte.eu",
+        "image": "https://unicowork.fr/images/IMG_0758.jpg",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "120 rue du Bourg Belé",
+            "addressLocality": "Le Mans",
+            "postalCode": "72000",
+            "addressRegion": "Sarthe",
+            "addressCountry": "FR"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 47.9966,
+            "longitude": 0.1956
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"],
+                "opens": "08:00",
+                "closes": "18:00"
+            }
+        ],
+        "priceRange": "€",
+        "areaServed": {
+            "@type": "City",
+            "name": "Le Mans"
+        }
+    }
+    </script>
+
+    <!-- Preload hero image pour LCP -->
+    <link rel="preload" as="image" href="images/IMG_0758.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1018,7 +1093,7 @@
 <!-- HERO -->
 <header class="hero">
     <div class="hero-bg">
-        <img src="images/IMG_0758.jpg" alt="Espace de coworking Unicowork au centre-ville du Mans — bureaux partagés avec mur végétal">
+        <img src="images/IMG_0758.jpg" alt="Espace de coworking Unicowork au centre-ville du Mans — bureaux partagés avec mur végétal" width="1920" height="1280" fetchpriority="high">
     </div>
     <div class="hero-content">
         <div class="hero-tag">Coworking au Mans • Centre-ville</div>
@@ -1059,9 +1134,9 @@
             </div>
         </div>
         <div class="about-images fade-up">
-            <img src="images/IMG_0755.jpg" alt="Espace de travail collaboratif au coworking Unicowork Le Mans">
-            <img src="images/IMG_0753.jpg" alt="Poste de travail équipé avec multi-écrans au coworking Le Mans">
-            <img src="images/IMG_0756.jpg" alt="Coin détente et canapé de l'espace coworking Unicowork">
+            <img src="images/IMG_0755.jpg" alt="Espace de travail collaboratif au coworking Unicowork Le Mans" width="800" height="600" loading="lazy">
+            <img src="images/IMG_0753.jpg" alt="Poste de travail équipé avec multi-écrans au coworking Le Mans" width="800" height="600" loading="lazy">
+            <img src="images/IMG_0756.jpg" alt="Coin détente et canapé de l'espace coworking Unicowork" width="800" height="600" loading="lazy">
         </div>
     </div>
 </section>
@@ -1074,23 +1149,23 @@
     </div>
     <div class="gallery-scroll">
         <div class="gallery-item">
-            <img src="images/IMG_0757.jpg" alt="Vue d'ensemble de l'espace de coworking Unicowork au Mans">
+            <img src="images/IMG_0757.jpg" alt="Vue d'ensemble de l'espace de coworking Unicowork au Mans" width="800" height="600" loading="lazy">
             <p>Vue d'ensemble de l'espace</p>
         </div>
         <div class="gallery-item">
-            <img src="images/IMG_0754.jpg" alt="Mur végétal et poste de travail au coworking Unicowork Le Mans">
+            <img src="images/IMG_0754.jpg" alt="Mur végétal et poste de travail au coworking Unicowork Le Mans" width="800" height="600" loading="lazy">
             <p>Mur végétal & poste de travail</p>
         </div>
         <div class="gallery-item">
-            <img src="images/IMG_0755.jpg" alt="Espace de travail collaboratif avec bureaux partagés au Mans">
+            <img src="images/IMG_0755.jpg" alt="Espace de travail collaboratif avec bureaux partagés au Mans" width="800" height="600" loading="lazy">
             <p>Espace de travail collaboratif</p>
         </div>
         <div class="gallery-item">
-            <img src="images/IMG_0753.jpg" alt="Bureau multi-écrans et coin bar au coworking Le Mans">
+            <img src="images/IMG_0753.jpg" alt="Bureau multi-écrans et coin bar au coworking Le Mans" width="800" height="600" loading="lazy">
             <p>Zone multi-écrans & bar</p>
         </div>
         <div class="gallery-item">
-            <img src="images/IMG_0756.jpg" alt="Coin détente avec canapé à l'espace de coworking Unicowork">
+            <img src="images/IMG_0756.jpg" alt="Coin détente avec canapé à l'espace de coworking Unicowork" width="800" height="600" loading="lazy">
             <p>Coin détente & réunion informelle</p>
         </div>
     </div>
@@ -1106,7 +1181,7 @@
         <div class="feature-card fade-up">
             <div class="feature-icon">📶</div>
             <h3>Fibre optique</h3>
-            <p>Connexion ultra-rapide pour vos visios, uploads et downloads. Fini les appels qui coupent.</p>
+            <p>Connexion ultra-rapide pour vos visios, envois et téléchargements. Fini les appels qui coupent.</p>
         </div>
         <div class="feature-card fade-up">
             <div class="feature-icon">🔇</div>
@@ -1165,7 +1240,7 @@
                 <li>Bureau dédié réservé</li>
                 <li>Wifi fibre optique</li>
                 <li>Café & thé inclus</li>
-                <li>Double des clés</li>
+                <li>Vos propres clés</li>
                 <li>Accès flexible</li>
             </ul>
             <a href="mailto:vincent@famille-porte.eu?subject=Réservation mensuelle" class="btn btn-green">Réserver</a>
@@ -1173,12 +1248,12 @@
         <div class="pricing-card fade-up">
             <h3>Annuel</h3>
             <div class="price">166€ <span>HT / mois</span></div>
-            <div class="price-note">Soit 2 000€ HT / an</div>
+            <div class="price-note">Soit 2 000€ HT / an — Économisez 17%</div>
             <ul class="pricing-perks">
                 <li>Bureau dédié réservé</li>
                 <li>Wifi fibre optique</li>
                 <li>Café & thé inclus</li>
-                <li>Double des clés</li>
+                <li>Vos propres clés</li>
                 <li>Accès flexible</li>
             </ul>
             <a href="mailto:vincent@famille-porte.eu?subject=Réservation annuelle" class="btn btn-outline" style="color: var(--green); border-color: var(--green);">Réserver</a>
@@ -1256,7 +1331,15 @@
             </details>
             <details class="faq-item fade-up">
                 <summary>Quels sont les horaires d'ouverture ?</summary>
-                <p>Unicowork est ouvert du lundi au vendredi de 8h00 à 18h00. Les abonnés mensuels et annuels disposent de leur propre double des clés pour un accès flexible selon leurs besoins.</p>
+                <p>Unicowork est ouvert du lundi au vendredi de 8h00 à 18h00. Les abonnés mensuels et annuels disposent de leurs propres clés pour un accès flexible selon leurs besoins.</p>
+            </details>
+            <details class="faq-item fade-up">
+                <summary>Y a-t-il des places de parking à proximité ?</summary>
+                <p>Oui, plusieurs parkings publics se trouvent à proximité immédiate d'Unicowork en centre-ville du Mans. L'espace est aussi accessible à pied depuis la gare et à 200 mètres de l'arrêt de tram "Gares".</p>
+            </details>
+            <details class="faq-item fade-up">
+                <summary>Peut-on recevoir des clients dans l'espace ?</summary>
+                <p>Bien sûr ! Vous pouvez accueillir vos clients et partenaires chez Unicowork. L'espace dispose d'un coin détente avec canapé idéal pour les rendez-vous dans un cadre professionnel et convivial.</p>
             </details>
         </div>
     </div>
@@ -1275,7 +1358,7 @@
     <div class="footer-links">
         <a href="mailto:vincent@famille-porte.eu">vincent@famille-porte.eu</a>
         <a href="tel:+33638112524">06 38 11 25 24</a>
-        <span style="color: rgba(255,255,255,0.3); font-size: 0.85rem;">© 2025 Unicowork</span>
+        <span style="color: rgba(255,255,255,0.3); font-size: 0.85rem;">© 2026 Unicowork</span>
     </div>
 </footer>
 
